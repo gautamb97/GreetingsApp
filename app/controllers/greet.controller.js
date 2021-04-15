@@ -40,7 +40,24 @@ exports.findAll = (req, res) => {
 
 // Find a single greet with a greetId
 exports.findOne = (req, res) => {
-
+    Greet.findById(req.params.greetId)
+    .then(greet => {
+        if(!greet) {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });            
+        }
+        res.send(greet);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving greet with id " + req.params.greetId
+        });
+    });
 };
 
 // Update a greet identified by the greetId in the request
