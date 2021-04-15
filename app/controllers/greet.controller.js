@@ -28,7 +28,14 @@ exports.create = (req, res) => {
 
 // Retrieve and return all greets from the database.
 exports.findAll = (req, res) => {
-
+    Greet.find()
+    .then(greets => {
+        res.send(greets);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving greets."
+        });
+    });
 };
 
 // Find a single greet with a greetId
