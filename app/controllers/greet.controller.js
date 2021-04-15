@@ -95,5 +95,22 @@ exports.update = (req, res) => {
 
 // Delete a greet with the specified greetId in the request
 exports.delete = (req, res) => {
-
+    Greet.findByIdAndRemove(req.params.greetId)
+    .then(greet => {
+        if(!greet) {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });
+        }
+        res.send({message: "Greet deleted successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not delete greet with id " + req.params.greetId
+        });
+    });
 };
