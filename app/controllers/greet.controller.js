@@ -62,7 +62,35 @@ exports.findOne = (req, res) => {
 
 // Update a greet identified by the greetId in the request
 exports.update = (req, res) => {
+    // Validate Request
+    if(!req.body.content) {
+        return res.status(400).send({
+            message: "Greet content can not be empty"
+        });
+    }
 
+    // Find greet and update it with the request body
+    Greet.findByIdAndUpdate(req.params.greetId, {
+        title: req.body.title || "Untitled Greet",
+        content: req.body.content
+    }, {new: true})
+    .then(greet => {
+        if(!greet) {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });
+        }
+        res.send(greet);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Greet not found with id " + req.params.greetId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error updating greet with id " + req.params.greetId
+        });
+    });
 };
 
 // Delete a greet with the specified greetId in the request
