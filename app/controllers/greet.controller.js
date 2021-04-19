@@ -1,5 +1,5 @@
 const Greet = require('../services/greet.services.js');
-const {validationResult, matchedData} = require('express-validator');
+const {authSchema } = require('../utility/helper')
 
 // Create and Save a new Greet
 // exports.create = ('name',[
@@ -23,6 +23,12 @@ class GreetingApp{
         Greet: req.body.Greet
     });
 
+    const result = authSchema.validate(req.body)
+    //message: 'Name sholud contain 3 characters and Starts with Caps'
+    if(result.error){
+        res.send("Name should contain at least 3 chars and starts with caps")
+    return
+    }
     // Save Greet in the database
     greet.save()
     .then(data => {
