@@ -1,22 +1,29 @@
 const Greet = require('../models/greet.models.js');
+const services = require('../services/greet.services.js');
+const validationResult = require('express-validator');
 
 // Create and Save a new Greet
-exports.create = (req, res) => {
+// exports.create = ('name',[
+//     check('name','Name must have 3+ characters long')
+//     .exits()
+//     .isLength({min:3})
+//]),
+    exports.create = (req, res) => {
     // Validate request
-    if(!req.body.content) {
+    if(!req.body.Greet) {
         return res.status(400).send({
             message: "Greet content can not be empty"
         });
     }
 
     // Create a Greet
-    const note = new Greet({
-        title: req.body.title || "Untitled Greet", 
-        content: req.body.content
+    const greet = new Greet({
+        name: req.body.name || "Untitled Greet", 
+        Greet: req.body.Greet
     });
 
     // Save Greet in the database
-    note.save()
+    greet.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
