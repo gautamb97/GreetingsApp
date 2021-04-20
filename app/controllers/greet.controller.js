@@ -1,13 +1,6 @@
 const Greet = require('../services/greet.services.js');
 const {authSchema } = require('../utility/helper')
 
-// Create and Save a new Greet
-// exports.create = ('name',[
-//     check('name','Name must have 3+ characters long')
-//     .exits()
-//     .isLength({min:3})
-//]),
-
 class GreetingApp{
     create = (req, res) => {
     // Validate request

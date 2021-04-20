@@ -1,0 +1,131 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "GreetingsApp",
+        "description": "This app is build for greeting to peopels"
+    },
+    "host": "localhost:3000",
+    "tags": [
+        {
+            "name": "Greets",
+            "description": "API for greets in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/greets": {
+            "get": {
+                "tags": [
+                    "Greets"
+                ],
+                "summary": "Get all greets in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/greets"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags":[
+                    "Greets"
+                ],
+                "summary": "Create a new Greet in system",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name": "body",
+                        "description": "Greet that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/greets"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data"
+                    }
+                }
+            }
+        },
+        "/greets/(id)": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the person that we want to see",
+                    "type":"string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Greets"
+                ],
+                "summary": "Get greet with the given ID",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/greets"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Can't found the data by the given ID"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type":"string"
+                }
+            }
+        },
+        "greets": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type":"string"
+                },
+                "Greet": {
+                    "type":"string"
+                }
+            }
+        },
+        "Greets": {
+            "type":"object",
+            "properties": {
+                "greet": {
+                    "type":"object",
+                    "additionalProperties": {
+                        "$ref": "#/deifinitions/greets"
+                    }
+                }
+            }
+        }
+    }
+}

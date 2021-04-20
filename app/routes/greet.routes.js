@@ -1,8 +1,20 @@
 module.exports = (app) => {
     const greets = require('../controllers/greet.controller');
-
+    require('swagger-ui-express');
+    require('swagger-jsdoc');
+    
     // Create a new Greet
     app.post('/greets', greets.create);
+
+    /**
+     * @swagger
+     * /greets:
+     *    get:
+     *      description: This is a get api call
+     *      responses:
+     *        200:
+     *          description: Success
+    */
 
     // Retrieve all Greet
     app.get('/greets', greets.findAll);
