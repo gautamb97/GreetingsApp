@@ -94,6 +94,54 @@
                         "description": "Failed. Can't found the data by the given ID"
                     }
                 }
+            },
+            "put": {
+                "summary": "Update greet with given ID",
+                "tags": [
+                    "Greets"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Greet with new values",
+                        "schema": {
+                            "$ref": "#/definitions/greets"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/greets"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad Post Data"
+                    },
+                    "404": {
+                        "description": "Failed. Greet not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete greet with fiven ID",
+                "tags": [
+                    "Greets"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Greet not found"
+                    }
+                }
             }
         }
     },

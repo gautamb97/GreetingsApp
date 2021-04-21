@@ -20,7 +20,7 @@ class GreetingApp{
     const result = authSchema.validate(req.body)
     //message: 'Name sholud contain 3 characters and Starts with Caps'
     if(result.error){
-        res.send(result)
+        res.send("Name should contain at least 3 chars and starts with caps")
     return
     }
     // Save Greet in the database
@@ -71,7 +71,7 @@ class GreetingApp{
     // Update a greet identified by the greetId in the request
     update = (req, res) => {
         // Validate Request
-        if(!req.body.content) {
+        if(!req.body.Greet) {
             return res.status(400).send({
                 message: "Greet content can not be empty"
             });
@@ -79,9 +79,10 @@ class GreetingApp{
 
         // Find greet and update it with the request body
         Greet.findByIdAndUpdate(req.params.greetId, {
-            title: req.body.title || "Untitled Greet",
-            content: req.body.content
-        }, {new: true})
+            name: req.body.name || "Untitled Greet",
+            Greet: req.body.Greet
+        }, {new: true,
+            useFindAndModify: false})
         .then(greet => {
             if(!greet) {
                 return res.status(404).send({
