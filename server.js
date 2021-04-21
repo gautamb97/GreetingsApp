@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 const express = require("express");
-const bodyParser = require("body-parser");
 require("dotenv").config();
 const swaggerUI = require("swagger-ui-express");
 const mongoose = require("mongoose");
@@ -11,10 +10,10 @@ const swaggerDoc = require("./app/swagger.json");
 const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Configuring the database
 const dbConfig = require("./config/database.config.js");

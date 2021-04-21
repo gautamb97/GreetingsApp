@@ -1,21 +1,21 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable global-require */
 module.exports = (app) => {
-    const greets = require('../controllers/greet.controller');
-    require('swagger-ui-express');
-    require('swagger-jsdoc');
-    
-    // Create a new Greet
-    app.post('/greets', greets.create);
+  const greets = require("../controllers/greet.controller");
+  require("swagger-ui-express");
 
-    // Retrieve all Greet
-    app.get('/greets', greets.findAll);
+  // Create a new Greet
+  app.post("/greets", greets.create);
 
-    // Retrieve a single Greet with greetId
-    app.get('/greets/:greetId', greets.findOne);
+  // Retrieve all Greet
+  app.get("/greets", greets.findAll);
 
-    // Update a Greet with greetId
-    app.put('/greets/:greetId', greets.update);
+  // Retrieve a single Greet with greetId
+  app.get("/greets/:greetId", greets.findOne);
 
-    // Delete a Greet with greetId
-    app.delete('/greets/:greetId', greets.delete);
-}
+  // Update a Greet with greetId
+  app.put("/greets/:greetId", greets.update);
+
+  // Delete a Greet with greetId
+  app.delete("/greets/:greetId", greets.delete);
+};

@@ -1,16 +1,16 @@
 /* eslint-disable linebreak-style */
-const Joi = require('joi');
+const Joi = require("joi");
 
 const authSchema = Joi.object({
-    name: Joi.string()
-        .min(3)
-        .required()
-        .pattern(new RegExp('^[A-Z][a-z]{3,}$')),
+  name: Joi.string()
+    .min(3)
+    .required()
+    .pattern(new RegExp("^[A-Z][a-z]{3,}$")),
 
-    Greet: Joi.string()
-        .required()
-})
+  Greet: Joi.string()
+    .required(),
+});
 
 module.exports = {
-    authSchema,
-}
+  authSchema,
+};
