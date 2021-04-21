@@ -2,7 +2,6 @@
 const express = require("express");
 require("dotenv").config();
 const swaggerUI = require("swagger-ui-express");
-const mongoose = require("mongoose");
 const logger = require("./app/logger/greet.logger");
 const swaggerDoc = require("./app/swagger.json");
 
@@ -16,20 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Configuring the database
-const dbConfig = require("./config/database.config.js");
-
-mongoose.Promise = global.Promise;
-
-// Connecting to the database
-mongoose.connect(dbConfig.url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log("Successfully connected to the database");
-}).catch((err) => {
-  console.log("Could not connect to the database. Exiting now...", err);
-  process.exit();
-});
+require("./config/database.config.js");
 
 // define a simple route
 app.get("/", (req, res) => {
