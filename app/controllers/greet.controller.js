@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const Greet = require('../services/greet.services.js');
 const {authSchema } = require('../utility/helper')
 
@@ -19,7 +20,7 @@ class GreetingApp{
     const result = authSchema.validate(req.body)
     //message: 'Name sholud contain 3 characters and Starts with Caps'
     if(result.error){
-        res.send("Name should contain at least 3 chars and starts with caps")
+        res.send(result)
     return
     }
     // Save Greet in the database

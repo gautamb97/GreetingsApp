@@ -1,17 +1,18 @@
+/* eslint-disable linebreak-style */
 const {
-    createLogger,
-    transports,
-    format
+  createLogger,
+  transports,
+  format,
 } = require('winston');
 
 const logger = createLogger({
-    transports: [
-        new transports.File({
-            filename: './logger/info.log',
-            level: 'info',
-            format: format.combine(format.timestamp(), format.json())
-        })
-    ]
-})
+  transports: [
+    new transports.File({
+      filename: './logger/info.log',
+      level: 'info',
+      format: format.combine(format.timestamp(), format.json()),
+    }),
+  ],
+});
 
 module.exports = logger;

@@ -68,7 +68,7 @@
                 }
             }
         },
-        "/greets/(id)": {
+        "/greets/{id}": {
             "parameters": [
                 {
                     "name": "id",
