@@ -2,8 +2,8 @@
 const mongoose = require("mongoose");
 
 const GreetSchema = mongoose.Schema({
-  name: String,
-  Greet: String,
+  name: { type: String, required: true },
+  Greet: { type: String, required: true },
 }, {
   timestamps: true,
 });

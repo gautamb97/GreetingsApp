@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-const logger = require("../logger/greet.logger.js");
 const Greet = require("../models/greet.models.js");
 
 class GreetingApp {
@@ -31,6 +30,7 @@ class GreetingApp {
     // Retrieve and return all greets from the database.
     findAll = (req, res) => {
       Greet.find()
+        .select("name Greet _id")
         .then((greets) => {
           res.send(greets);
         }).catch((err) => {
@@ -43,6 +43,7 @@ class GreetingApp {
     // Find a single greet with a greetId
     findOne = (req, res) => {
       Greet.findById(req.params.greetId)
+        .select("name Greet _id")
         .then((greet) => {
           if (!greet) {
             return res.status(404).send({
