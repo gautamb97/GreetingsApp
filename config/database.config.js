@@ -1,3 +1,9 @@
+/**
+ * @description it helps to connect with the database
+ * @package dotenv, mongoose
+ * @author Gautam Biswal
+*/
+
 require("dotenv").config();
 
 const mongoose = require("mongoose");

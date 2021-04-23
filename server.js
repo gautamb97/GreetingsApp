@@ -1,8 +1,15 @@
 /* eslint-disable linebreak-style */
+
+/**
+ * @file server.js
+ * @description connecting to server and doing operations of routes
+ * @author Gautam Biswal
+ * @package express, dotenv, swagger-ui-express
+*/
 const express = require("express");
 require("dotenv").config();
 const swaggerUI = require("swagger-ui-express");
-const logger = require("./app/logger/greet.logger");
+const logger = require("./app/logger/greet");
 const swaggerDoc = require("./app/swagger.json");
 
 // create express app
@@ -23,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 // Require Greet routes
-require("./app/routes/greet.routes.js")(app);
+require("./app/routes/greet.js")(app);
 
 app.use("/swagger", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 // listen for requests

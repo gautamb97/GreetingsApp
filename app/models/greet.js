@@ -1,4 +1,12 @@
 /* eslint-disable linebreak-style */
+
+/**
+ * @module models
+ * @file greet.js
+ * @description creating schema in monodb and and validating it
+ * @package mongoose
+ * @author Gautam Biswal
+*/
 const mongoose = require("mongoose");
 
 const GreetSchema = mongoose.Schema({

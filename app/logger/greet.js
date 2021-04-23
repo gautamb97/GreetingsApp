@@ -1,4 +1,12 @@
 /* eslint-disable linebreak-style */
+
+/**
+ * @module logger
+ * @file greet.js
+ * @description it is creating logs of connecting with db and errors occurs
+ * @author Gautam Biswal
+ * @package winston
+*/
 const {
   createLogger,
   transports,
